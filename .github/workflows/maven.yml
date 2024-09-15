@@ -37,7 +37,7 @@ jobs:
     - name: Build with Maven
       run: mvn -B clean install 
     - name: Maven
-    - run: mvn -f path/to/pom.xml <goals> ...
+    - run: mvn -f path/to/pom.xml <Maven> ...
 
       
     # Step 4: Run Unit Tests
