@@ -36,13 +36,13 @@ jobs:
     # Step 3: Change to the correct directory where the pom.xml is located
     - name: Change directory to 'Controller' folder
       working-directory: ./Controller
-      run: pwd  # Just to confirm the working directory
+      run: ls -al  # This command lists the contents for verification (optional)
 
     # Step 4: Build with Maven
     - name: Build with Maven
       run: mvn -B clean install
 
-    # Step 5: Run Tests
+    # Step 5: Run Unit Tests
     - name: Run Unit Tests
       run: mvn test
 
@@ -56,7 +56,6 @@ jobs:
       with:
         name: demo-app-jar
         path: target/*.jar
-
 
         
     - name: Build with Maven
