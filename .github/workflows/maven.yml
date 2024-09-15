@@ -33,11 +33,6 @@ jobs:
         distribution: 'temurin'
         cache: maven
 
-    # Step 3: Change to the correct directory where the pom.xml is located
-    - name: Change directory to 'Controller' folder
-      working-directory: ./Controller
-      run: ls -al  # This command lists the contents for verification (optional)
-
     # Step 4: Build with Maven
     - name: Build with Maven
       run: mvn -B clean install
