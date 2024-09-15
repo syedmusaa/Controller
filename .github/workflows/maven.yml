@@ -50,8 +50,8 @@ jobs:
     - name: Upload JAR Artifact
       uses: actions/upload-artifact@v3
       with:
-        name: SpringBootProjectDemo-app-jar
-        path: target/SpringBootProjectDemo.jar
+        name: SpringBootProjectDemo
+        path: target/SpringBootProjectDemo-0.0.1-SNAPSHOT.jar
 
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
