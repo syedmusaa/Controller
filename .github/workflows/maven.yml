@@ -6,34 +6,55 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Java CI with Maven
+name: Maven CI Pipeline
 
+# Trigger the workflow on push or pull requests to the main branch
 on:
   push:
-    branches: 
-    - main
+    branches:
+      - main
   pull_request:
-    branches: 
-    - main
+    branches:
+      - main
 
+# Define the jobs that will run in the workflow
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
+    # Steps to execute within the build job
     steps:
-    - name:  Checkout Repo
-    - uses: actions/checkout@v4
+    # Step 1: Check out the repository
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-    - name: Setup Node
-    - uses: actions/setup-node@v4
-    
+    # Step 2: Set up Java environment (specify the JDK version)
     - name: Set up JDK 17
-      uses: actions/setup-java@v4
+      uses: actions/setup-java@v3
       with:
         java-version: '17'
-        distribution: 'bot'
+        distribution: 'temurin' # Options: 'temurin', 'zulu', 'adopt', etc.
         cache: maven
+
+    # Step 3: Set up Maven
+    - name: Set up Maven
+      run: mvn -B clean install --file pom.xml
+
+    # Step 4: Run Tests
+    - name: Run Unit Tests
+      run: mvn test
+
+    # Step 5: Generate a JAR (if build is successful)
+    - name: Package Application
+      run: mvn package
+
+    # Optional Step: Upload the JAR as an artifact (if needed for deployment or further processing)
+    - name: Upload JAR Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: SpringBootProjectDemo-jar
+        path: target/*.jar
+
         
     - name: Build with Maven
       run: mvn clean install
